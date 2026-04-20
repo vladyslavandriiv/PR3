@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MetaVault — Аналітика Dota 2 & CS2</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header__inner">
+      <a href="#" class="logo">
+        <span class="logo__icon">⬡</span>
+        <span class="logo__text">MetaVault</span>
+      </a>
+
+      <nav class="nav" id="mainNav">
+        <ul class="nav__list">
+          <li><a href="#heroes" class="nav__link">Герої</a></li>
+          <li><a href="#weapons" class="nav__link">Зброя</a></li>
+          <li><a href="#cards" class="nav__link">Статистика</a></li>
+          <li><a href="#about" class="nav__link">Про нас</a></li>
+        </ul>
+        <button class="nav__close" id="navClose" aria-label="Закрити меню">✕</button>
+      </nav>
+
+      <div class="header__right">
+        <!-- Завдання 1: Анімована CTA-кнопка -->
+        <button class="btn-cta" id="ctaBtn">
+          <span class="btn-cta__text">Аналізувати</span>
+          <span class="btn-cta__spinner" aria-hidden="true"></span>
+        </button>
+
+        <!-- Burger button -->
+        <button class="burger" id="burgerBtn" aria-label="Відкрити меню" aria-expanded="false">
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__content">
+      <p class="hero__label">Система реального часу</p>
+      <h1 class="hero__title">Аналітика<br /><span>Dota 2 & CS2</span></h1>
+      <p class="hero__sub">Відстежуй мету, зброю та ігрові тренди з точністю до патчу</p>
+    </div>
+  </section>
+
+  <!-- ===== FILTER SECTION (Завдання 4) ===== -->
+  <section class="section" id="cards">
+    <div class="container">
+      <h2 class="section__title">Топ статистика</h2>
+
+      <div class="filters" role="group" aria-label="Фільтр карток">
+        <button class="filter-btn active" data-filter="all">Всі</button>
+        <button class="filter-btn" data-filter="dota2">Dota 2</button>
+        <button class="filter-btn" data-filter="cs2">CS2</button>
+        <button class="filter-btn" data-filter="esport">Кіберспорт</button>
+      </div>
+
+      <div class="cards-grid">
+
+        <!-- DOTA 2 CARDS -->
+        <article class="card" data-category="dota2">
+          <div class="card__img card__img--dota">
+            <span class="card__game-tag">DOTA 2</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Windranger</h3>
+            <p class="card__stat">Win rate: <strong>54.3%</strong></p>
+            <p class="card__desc">Найпопулярніший герой патчу 7.37 — домінує у позиції 4.</p>
+            <!-- Завдання 3: Кнопка лайк -->
+            <button class="like-btn" aria-label="Додати до улюблених" aria-pressed="false">
+              <svg class="like-btn__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <span class="like-btn__count">241</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-category="dota2">
+          <div class="card__img card__img--dota2">
+            <span class="card__game-tag">DOTA 2</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Phantom Assassin</h3>
+            <p class="card__stat">Win rate: <strong>51.7%</strong></p>
+            <p class="card__desc">Керрі з найвищим burst damage у грі. Незамінна у пізній грі.</p>
+            <button class="like-btn" aria-label="Додати до улюблених" aria-pressed="false">
+              <svg class="like-btn__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <span class="like-btn__count">189</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-category="dota2">
+          <div class="card__img card__img--dota3">
+            <span class="card__game-tag">DOTA 2</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Crystal Maiden</h3>
+            <p class="card__stat">Pick rate: <strong>38.9%</strong></p>
+            <p class="card__desc">Найвищий pick rate підтримки. Відмінне мана-ауро та ультимейт.</p>
+            <button class="like-btn" aria-label="Додати до улюблених" aria-pressed="false">
+              <svg class="like-btn__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <span class="like-btn__count">312</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- CS2 CARDS -->
+        <article class="card" data-category="cs2">
+          <div class="card__img card__img--cs1">
+            <span class="card__game-tag">CS2</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">AK-47</h3>
+            <p class="card__stat">Головних страт: <strong>67%</strong></p>
+            <p class="card__desc">Найпопулярніша зброя CT-сайду. Контролює довгі дистанції.</p>
+            <button class="like-btn" aria-label="Додати до улюблених" aria-pressed="false">
+              <svg class="like-btn__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <span class="like-btn__count">503</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-category="cs2">
+          <div class="card__img card__img--cs2">
+            <span class="card__game-tag">CS2</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">AWP</h3>
+            <p class="card__stat">К/Д-рейтинг: <strong>1.42</strong></p>
+            <p class="card__desc">Снайперська гвинтівка з найвищим TTK. Обов'язкова у пізньому раунді.</p>
+            <button class="like-btn" aria-label="Додати до улюблених" aria-pressed="false">
+              <svg class="like-btn__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <span class="like-btn__count">447</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-category="cs2">
+          <div class="card__img card__img--cs3">
+            <span class="card__game-tag">CS2</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">M4A4</h3>
+            <p class="card__stat">Точність: <strong>89.2%</strong></p>
+            <p class="card__desc">Базова штурмова гвинтівка CT. Стабільність на всіх дистанціях.</p>
+            <button class="like-btn" aria-label="Додати до улюблених" aria-pressed="false">
+              <svg class="like-btn__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <span class="like-btn__count">278</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- ESPORT CARDS -->
+        <article class="card" data-category="esport">
+          <div class="card__img card__img--esp1">
+            <span class="card__game-tag">ESPORT</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">The International 2024</h3>
+            <p class="card__stat">Призовий фонд: <strong>$40M</strong></p>
+            <p class="card__desc">Найбільший турнір з Dota 2. Переможець — Team Spirit з України.</p>
+            <button class="like-btn" aria-label="Додати до улюблених" aria-pressed="false">
+              <svg class="like-btn__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <span class="like-btn__count">891</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-category="esport">
+          <div class="card__img card__img--esp2">
+            <span class="card__game-tag">ESPORT</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">BLAST Premier 2024</h3>
+            <p class="card__stat">Перегляди: <strong>2.1M</strong></p>
+            <p class="card__desc">Найрейтинговіший CS2 турнір сезону. Фінал між Navi та FaZe.</p>
+            <button class="like-btn" aria-label="Додати до улюблених" aria-pressed="false">
+              <svg class="like-btn__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <span class="like-btn__count">634</span>
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="section section--dark" id="about">
+    <div class="container">
+      <h2 class="section__title">Про MetaVault</h2>
+      <p class="about__text">Ми збираємо та аналізуємо мільйони матчів щодня, щоб надати гравцям та командам найточніші дані про актуальну мету. Від ранжування героїв до детальної зброярської статистики — все в одному місці.</p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__copy">© 2025 MetaVault. Система аналітики Dota 2 та CS2.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

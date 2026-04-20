@@ -1,0 +1,573 @@
+/* ===== CSS VARIABLES ===== */
+:root {
+  --clr-bg: #0a0c10;
+  --clr-surface: #111520;
+  --clr-surface-2: #161c2a;
+  --clr-border: rgba(255, 255, 255, 0.07);
+  --clr-accent-dota: #e94560;
+  --clr-accent-cs: #f5a623;
+  --clr-accent-blue: #4f8ef7;
+  --clr-text: #e0e6f0;
+  --clr-text-muted: #6b7a99;
+  --font-display: 'Rajdhani', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-body: 'Inter', sans-serif;
+  --radius: 8px;
+  --transition: 0.3s ease;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Блокування скролу при відкритому меню (Завдання 2) */
+body.no-scroll { overflow: hidden; }
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ===== CONTAINER ===== */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10, 12, 16, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== LOGO ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--clr-text);
+}
+
+.logo__icon {
+  color: var(--clr-accent-dota);
+  font-size: 1.6rem;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ===== NAV (Десктоп) ===== */
+.nav__list {
+  display: flex;
+  gap: 32px;
+}
+
+.nav__link {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--clr-text-muted);
+  transition: color var(--transition);
+  position: relative;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--clr-accent-dota);
+  transition: width var(--transition);
+}
+
+.nav__link:hover { color: var(--clr-text); }
+.nav__link:hover::after { width: 100%; }
+
+.nav__close { display: none; }
+
+/* ===== BURGER BUTTON (Завдання 2) ===== */
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  border-radius: var(--radius);
+  background: var(--clr-surface);
+  transition: background var(--transition);
+}
+
+.burger:hover { background: var(--clr-surface-2); }
+
+.burger__line {
+  display: block;
+  height: 2px;
+  background: var(--clr-text);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition), width var(--transition);
+}
+
+/* Анімація бургера → хрестик при .is-open */
+.burger.is-open .burger__line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burger.is-open .burger__line:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+.burger.is-open .burger__line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ===== CTA BUTTON (Завдання 1) ===== */
+.btn-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: var(--radius);
+  background: var(--clr-accent-dota);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  overflow: hidden;
+  /* transition для плавної зміни кольору/тіні (Завдання 1) */
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 0 rgba(233, 69, 96, 0.4);
+}
+
+.btn-cta:hover {
+  background: #ff5b73;
+  box-shadow: 0 4px 20px rgba(233, 69, 96, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-cta:active {
+  transform: scale(0.95);
+  background: #c73550;
+  box-shadow: none;
+}
+
+.btn-cta.is-loading {
+  pointer-events: none;
+  background: #7a2234;
+  color: transparent;
+}
+
+.btn-cta__spinner {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.btn-cta.is-loading .btn-cta__spinner { display: block; }
+
+@keyframes spin { to { transform: translateX(-50%) rotate(360deg); } }
+
+/* ===== MOBILE NAV (Завдання 2) ===== */
+@media (max-width: 768px) {
+  .burger { display: flex; }
+
+  .nav {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    /* Заховано через transform замість display:none — для CSS-анімації */
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--clr-surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  /* Стан відкрито: клас .open додається через JS */
+  .nav.open {
+    transform: translateY(0);
+  }
+
+  .nav__list {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 24px;
+  }
+
+  .nav__list li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav__link {
+    display: block;
+    padding: 18px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--clr-text-muted);
+    border-radius: var(--radius);
+    transition: color var(--transition), background var(--transition);
+  }
+
+  .nav__link:hover {
+    color: var(--clr-text);
+    background: var(--clr-surface-2);
+  }
+
+  .nav__link::after { display: none; }
+
+  .nav__close {
+    display: block;
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 44px; height: 44px;
+    font-size: 1.4rem;
+    color: var(--clr-text-muted);
+    background: var(--clr-surface-2);
+    border-radius: var(--radius);
+    transition: color var(--transition), background var(--transition);
+  }
+
+  .nav__close:hover {
+    color: var(--clr-text);
+    background: rgba(233, 69, 96, 0.15);
+  }
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(233, 69, 96, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(79, 142, 247, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(245, 166, 35, 0.08) 0%, transparent 50%);
+  animation: bgShift 8s ease-in-out infinite alternate;
+}
+
+@keyframes bgShift {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  padding: 120px 24px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero__label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--clr-accent-dota);
+  margin-bottom: 16px;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  color: var(--clr-text);
+  margin-bottom: 24px;
+}
+
+.hero__title span {
+  background: linear-gradient(135deg, var(--clr-accent-dota), var(--clr-accent-cs));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__sub {
+  font-size: 1.1rem;
+  color: var(--clr-text-muted);
+  max-width: 480px;
+}
+
+/* ===== SECTION ===== */
+.section {
+  padding: 80px 0;
+}
+
+.section--dark {
+  background: var(--clr-surface);
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--clr-text);
+  margin-bottom: 40px;
+}
+
+/* ===== FILTERS (Завдання 4) ===== */
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--clr-text-muted);
+  border: 1px solid var(--clr-border);
+  background: var(--clr-surface);
+  transition: all var(--transition);
+}
+
+.filter-btn:hover {
+  color: var(--clr-text);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.filter-btn.active {
+  color: #fff;
+  background: var(--clr-accent-dota);
+  border-color: var(--clr-accent-dota);
+  box-shadow: 0 0 20px rgba(233, 69, 96, 0.3);
+}
+
+/* ===== CARDS GRID ===== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Приховати картку (Завдання 4) */
+.card.hidden {
+  display: none;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* Card image placeholders з кольоровими градієнтами */
+.card__img {
+  height: 140px;
+  display: flex;
+  align-items: flex-start;
+  padding: 12px;
+  position: relative;
+}
+
+.card__img--dota  { background: linear-gradient(135deg, #1a0a2e, #3d1560); }
+.card__img--dota2 { background: linear-gradient(135deg, #0d1b3e, #1a3a6e); }
+.card__img--dota3 { background: linear-gradient(135deg, #0a2a3e, #0d5078); }
+.card__img--cs1   { background: linear-gradient(135deg, #1a1200, #5a3a00); }
+.card__img--cs2   { background: linear-gradient(135deg, #001a10, #004d30); }
+.card__img--cs3   { background: linear-gradient(135deg, #0a0a2e, #1c1c7a); }
+.card__img--esp1  { background: linear-gradient(135deg, #2e0a0a, #8a1a1a); }
+.card__img--esp2  { background: linear-gradient(135deg, #0a1a2e, #1a3a6e); }
+
+.card__game-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--clr-text-muted);
+}
+
+.card__body {
+  padding: 16px 20px 20px;
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--clr-text);
+  margin-bottom: 6px;
+}
+
+.card__stat {
+  font-size: 0.85rem;
+  color: var(--clr-text-muted);
+  margin-bottom: 8px;
+}
+
+.card__stat strong {
+  color: var(--clr-accent-cs);
+  font-family: var(--font-mono);
+}
+
+.card__desc {
+  font-size: 0.85rem;
+  color: var(--clr-text-muted);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+/* ===== LIKE BUTTON (Завдання 3) ===== */
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 50px;
+  border: 1px solid var(--clr-border);
+  background: var(--clr-surface-2);
+  color: var(--clr-text-muted);
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  transition: all var(--transition);
+}
+
+.like-btn:hover {
+  border-color: rgba(233, 69, 96, 0.4);
+  color: var(--clr-accent-dota);
+}
+
+.like-btn__icon {
+  width: 16px;
+  height: 16px;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+
+/* Активний (лайкнутий) стан */
+.like-btn.is-active {
+  background: rgba(233, 69, 96, 0.15);
+  border-color: var(--clr-accent-dota);
+  color: var(--clr-accent-dota);
+}
+
+.like-btn.is-active .like-btn__icon {
+  fill: var(--clr-accent-dota);
+  stroke: var(--clr-accent-dota);
+  transform: scale(1.2);
+}
+
+/* Анімація при натисканні */
+@keyframes heartBeat {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.4); }
+  60%  { transform: scale(0.9); }
+  100% { transform: scale(1.2); }
+}
+
+.like-btn.is-active .like-btn__icon {
+  animation: heartBeat 0.4s ease forwards;
+}
+
+/* ===== ABOUT ===== */
+.about__text {
+  font-size: 1.05rem;
+  color: var(--clr-text-muted);
+  max-width: 680px;
+  line-height: 1.8;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #070910;
+  border-top: 1px solid var(--clr-border);
+  padding: 28px 0;
+}
+
+.footer__copy {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--clr-text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .hero__content { padding-top: 100px; }
+  .btn-cta span:first-child { font-size: 0.8rem; }
+  .section__title { font-size: 1.8rem; }
+  .cards-grid { grid-template-columns: 1fr; }
+}
